@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+
+
+    <link rel = "stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+<!--Start of new code-->
+    <div id="gallery">
+        <img src="https://www.cnet.com/a/img/resize/87be5c7b077fab728f485c699a46b214c98fa3af/hub/2022/02/15/6dcfc23f-44d3-4534-91fb-e4939880df37/20211209-samsung-san-jose-headquarters-01.jpg?auto=webp&fit=crop&height=675&width=1200" id="current-image">
+    </div>
+    <div class="btns">
+        <button id="prev-button">Previous</button>
+        <button id="next-button">Next</button>
+    </div>
+
+
+<!--END-->
+<header>
+    <nav>
+        <div class="hamburger">☰</div>
+        <ul>
+            <l1> <a href="index.html">Home</a></l1>
+            <l1> <a href="article.html">Article</a></l1>
+            <l1> <a href="gallery.html">Gallery</a></l1>
+        </ul>
+    </nav>
+</header>
+
+
+</main>
+
+
+
+
+<script>
+    document.querySelector('.hamburger').addEventListener('click', function(){
+        document.querySelector('nav ul').classList.toggle('active');
+    });
+
+//IMAGE CYCLE BEGINNING
+
+    const gallery = document.getElementById('gallery');
+    const prevButton = document.getElementById('prev-button');
+    const nextButton = document.getElementById('next-button');
+
+
+    const images = ['https://www.cnet.com/a/img/resize/87be5c7b077fab728f485c699a46b214c98fa3af/hub/2022/02/15/6dcfc23f-44d3-4534-91fb-e4939880df37/20211209-samsung-san-jose-headquarters-01.jpg?auto=webp&fit=crop&height=675&width=1200', 'https://static.dezeen.com/uploads/2015/10/Central-Wolfe-Campus_HOK_Silicon-Valley_dezeen_936_12.jpg', 'https://quizcoconut.com/wp-content/uploads/2022/03/silicon-aerial.jpeg', 'https://www.apple.com/newsroom/images/r8-landing-page-tiles/Apple_Park_Visitor_center_entrance_20171117_LP_hero.jpg.og.jpg'];
+    let currentIndex = 0;
+
+    prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1 + images.length) % images.length;
+            updateImage();
+    });
+
+    nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateImage();
+    });
+
+    function updateImage() {
+        const img = gallery.querySelector('#current-image');
+        img.classList.add('fade-out');
+        setTimeout(()=> {
+                img.src = images[currentIndex];
+                img.alt = images[currentIndex];
+                img.classList.remove('fade-out');
+
+        },500);
+
+    }
+
+</script>
+
+</body>
+
+
+</html>
